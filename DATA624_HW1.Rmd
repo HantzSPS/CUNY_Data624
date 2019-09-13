@@ -1,0 +1,112 @@
+---
+title: "D624_HW1"
+author: "Hantz Angrand"
+date: "September 1, 2019"
+output:
+  pdf_document: default
+  html_document: default
+---
+#Upload Library fpp2
+```{r}
+library(fpp2)
+```
+
+1.- Use the help function to explore what the series gold, woolyrnq and gas represent.
+```{r}
+help(gold)
+```
+
+woolyrnq
+```{r}
+??woolyrnq
+```
+
+gas
+```{r}
+??gas
+```
+
+
+Use autoplot() to plot each of these in separate plots.
+-Gold
+```{r}
+autoplot(gold)
+```
+
+-Autoplot woolyrnq
+```{r}
+autoplot(woolyrnq)
+```
+
+-Autplot gas
+```{r}
+autoplot(gas)
+
+```
+
+What is the frequency of each series? Hint: apply the frequency() function.
+-gold frequency
+```{r}
+frequency(gold)
+```
+
+-woolyrnq frequency
+```{r}
+frequency(woolyrnq)
+```
+
+-gas frequency
+```{r}
+frequency(gas)
+```
+
+Use which.max() to spot the outlier in the gold series. Which observation was it?
+```{r}
+which.max(gold)
+```
+
+Download some monthly Australian retail data from the book website. These represent retail sales in various categories for different Australian states, and are stored in a MS-Excel file.
+You can read the data into R with the following script:
+retaildata <- readxl::read_excel("retail.xlsx", skip=1)
+```{r}
+retaildata <- readxl::read_excel("C:/Users/hangr/Documents/fall2019/Data624/retail.xlsx", skip=1)
+head(retaildata)
+```
+
+The second argument (skip=1) is required because the Excel sheet has two header rows.
+Select one of the time series as follows (but replace the column name with your own chosen column):
+myts <- ts(retaildata[,"A3349873A"],
+  frequency=12, start=c(1982,4))
+  
+```{r}
+a_Col <- ts(retaildata[,"A3349873A"],
+  frequency=12, start=c(1982,4))
+```
+
+Explore your chosen retail time series using the following functions:
+autoplot(), ggseasonplot(), ggsubseriesplot(), gglagplot(), ggAcf()
+```{r}
+autoplot(a_Col)
+```
+
+-ggseasonplot()
+```{r}
+ggseasonplot(a_Col)
+```
+-ggsubseriesplot()
+```{r}
+ggsubseriesplot(a_Col)
+```
+-gglagplot()
+```{r}
+gglagplot(a_Col)
+```
+-ggAcf()
+```{r}
+ggAcf(a_Col)
+```
+
+Can you spot any seasonality, cyclicity and trend? What do you learn about the series?
+
+The series have a trend and seasonality.
+In general the sales are increasing year over year but it is subjet of seasonality. At each 12 month you see the biggest increase due to shopper loves to shop for the holidays.
